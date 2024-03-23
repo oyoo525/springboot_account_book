@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.container_box {
+	width: 720px;
+	height: 100%;
+	background-color: antiquewhite;
+}
+
+.hidden {
+	display: none;
+}

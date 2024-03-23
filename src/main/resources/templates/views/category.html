@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/global.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="/js/category.js"></script>
+</head>
+<body>
+	<div class="container_box">
+		<div th:include="temp/header :: .header_box"></div>
+		<div>
+			<span>수입 카테고리</span>
+			<button id="incomeCategoryDeleteBtn">삭제</button>
+			<button id="incomeCategoryModifyBtn">수정</button>
+			<button id="incomeCategoryAddBtn">추가</button>
+			<div class="incomeInputBox hidden">
+				<input type="text" id="incomeCategoryInput">
+				<button type="button" id="incomeCategoryInputSubmitBtn"></button>
+			</div>
+			<div th:if="${incomeCategory != null}">
+				<ul th:each="category, iterStat : ${incomeCategory}">
+					<li>
+						<input type="radio" th:value="${category}" name="incomeCategory" class="incomeCategory" th:data-index="${iterStat.index}">
+						<span th:text="${category}"></span>
+					</li>
+				</ul>
+			</div>
+			<div th:if="${incomeCategory == null}">
+				카테고리가 없습니다.
+			</div>
+		</div>
+		<div>
+			<span>지출 카테고리</span>
+			<button>삭제</button>
+			<button>수정</button>
+			<button>추가</button>
+			<div th:if="${expenseCategory != null}">
+				<ul th:each="category : ${expenseCategory}">
+					<li>
+						<input type="radio" th:value="${category}" name="expenseCategory">
+						<span th:text="${category}"></span>
+					</li>
+				</ul>
+			</div>
+			<div th:if="${expenseCategory == null}">
+				카테고리가 없습니다.
+			</div>
+		</div>
+	
+	
+	</div>
+	
+</body>
+</html>

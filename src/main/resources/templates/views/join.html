@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/global.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="/js/func.js"></script>
+	<script src="/js/submit.js"></script>
+	<script src="/js/join.js"></script>
+</head>
+<body>
+	<div class="container_box">
+		<div th:include="temp/header :: .header_box"></div>
+		<form id="join_form">
+			<input type="hidden" id="verifyCondition" value="false">
+			<input type="text" name="id" id="id" placeholder="이메일 주소">
+			<button type="button" id="sendMailBtn">인증번호 보내기</button><br>
+			<input type="text" id="verify" placeholder="인증번호 6자리">
+			<button type="button" id="verifyBtn">인증하기</button><br>
+			<input type="password" name="pass" id="pass" placeholder="비밀번호"><br>
+			<button type="submit">가입하기</button>
+		</form>
+	
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/global.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="/js/submit.js"></script>
+	<script src="/js/account.js"></script>
+</head>
+<body>
+	<div class="container_box">
+		<div th:include="temp/header :: .header_box"></div>
+		<form id="account_form">
+			<input type="hidden" name="id" id="id" value="sehwa">
+			<div>
+				<input type="radio" name="type" class="type" value="income" checked>수입
+				<input type="radio" name="type" class="type" value="expense">지출
+			</div>
+			<div>
+				<button type="button" onclick="location.href='/category'">카테고리 관리로 이동</button>
+				<select name="category" id="category">
+					<option hidden value="0" selected>-선택-</option>
+					<option>식비</option>
+					<option>교통</option>
+					<option>통신</option>
+				</select>
+			</div>
+			<div>
+				<input type="date" name="date" id="date">
+			</div>
+			<div>
+				<input type="text" name="amount" id="amount" placeholder="금액을 입력하세요.">
+			</div>
+			<div>
+				<input type="text" name="account" id="account" placeholder="거래처를 입력하세요.">
+			</div>
+			<div>
+				<textarea name="memo" id="memo"></textarea>
+			</div>
+			<button type="submit">추가</button>
+		</form>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/global.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="/js/submit.js"></script>
+</head>
+<body>
+	<div class="container_box">
+		<div th:include="temp/header :: .header_box">
+		</div>
+		<div>
+			<span>오늘의 머니</span>
+			<button onclick="location.href='/account'">입력</button>
+			<table>
+				<tr>
+					<td>수입</td>
+					<td th:text="${#numbers.formatDecimal(income, 0, 'COMMA', 0, 'POINT')}"></td>
+				</tr>
+				<tr>
+					<td>지출</td>
+					<td th:text="${#numbers.formatDecimal(expense, 0, 'COMMA', 0, 'POINT')}"></td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<span>이번주 리포트</span>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+</html>

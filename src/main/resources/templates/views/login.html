@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/global.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="/js/submit.js"></script>
+</head>
+<body>
+	<div class="container_box">
+		<div th:include="temp/header :: .header_box"></div>
+		<form id="login_form">
+			<input type="text" name="id" id="id" placeholder="아이디"><br>
+			<input type="password" name="pass" id="pass" placeholder="비밀번호"><br>
+			<button type="button" onclick="location.href='/join'">회원가입</button>
+			<button type="submit">로그인</button>
+		</form>
+	</div>
+</body>
+</html>
