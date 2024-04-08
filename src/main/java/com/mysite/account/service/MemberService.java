@@ -39,12 +39,13 @@ public class MemberService {
 	
 
 	
-	
+	// 회원가입
 	public Member join(String id, String pass) {
 		Member m = new Member(id, pass, null, null);
 		return memberRepository.save(m);
 	}
 	
+	// 로그인
 	public String login(String id, String pass) {
 		log.info("MemberService : login({}, {})", id, pass);
 		log.info("MemberService : SecretKey : {}", secretKey);
@@ -57,10 +58,12 @@ public class MemberService {
 		}
 	}
 	
+	// 회원정보 가져오기
 	public Optional<Member> getMember(String id) {
 		return memberRepository.findById(id);
 	}
 	
+	// 수입 카테고리 추가하기
 	@Transactional
 	public void addIncomeCategory(String id, String categories) {
 	    Optional<Member> memberOptional = memberRepository.findById(id);
@@ -76,6 +79,7 @@ public class MemberService {
 	    }
 	}
 	
+	// 수입 카테고리 수정하기
 	@Transactional
 	public void modifyIncomeCategory(String id, String categories, int index) {
 		Optional<Member> memberOptional = memberRepository.findById(id);
@@ -88,18 +92,61 @@ public class MemberService {
 		}
 	}
 
+	// 수입 카테고리 삭제하기
 	@Transactional
 	public boolean deleteIncomeCategory(String id, String categories, int index) {
-		Optional<List<Account>> accountOptional =  accountRepository.findByIdAndCategory(id, categories);
-		if(accountOptional.isEmpty()) {
-			Optional<Member> memberOptional = memberRepository.findById(id);
-			if(memberOptional.isPresent()) {
-				Member member = memberOptional.get();
-				List<String> incomeCategories = member.getIncomeCategory();
-				incomeCategories.remove(index);
-				member.setIncomeCategory(incomeCategories);
-				memberRepository.save(member);
-			}
+		Optional<Member> memberOptional = memberRepository.findById(id);
+		if(memberOptional.isPresent()) {
+			Member member = memberOptional.get();
+			List<String> incomeCategories = member.getIncomeCategory();
+			incomeCategories.remove(index);
+			member.setIncomeCategory(incomeCategories);
+			memberRepository.save(member);
+			return true;
+		} else {
+			return false;			
+		}
+	}
+	
+	// 지출 카테고리 추가하기
+	@Transactional
+	public void addExpenseCategory(String id, String categories) {
+	    Optional<Member> memberOptional = memberRepository.findById(id);
+	    if (memberOptional.isPresent()) {
+	        Member member = memberOptional.get();
+	        List<String> expenseCategories = member.getExpenseCategory();
+	        if (expenseCategories == null) {
+	        	expenseCategories = new ArrayList<>();
+	        }
+	        expenseCategories.add(categories);
+	        member.setExpenseCategory(expenseCategories);
+	        memberRepository.save(member);
+	    }
+	}
+	
+	// 지출 카테고리 수정하기
+	@Transactional
+	public void modifyExpenseCategory(String id, String categories, int index) {
+		Optional<Member> memberOptional = memberRepository.findById(id);
+		if(memberOptional.isPresent()) {
+			Member member = memberOptional.get();
+			List<String> expenseCategories = member.getExpenseCategory();
+			expenseCategories.set(index, categories);
+			member.setExpenseCategory(expenseCategories);
+			memberRepository.save(member);
+		}
+	}
+	
+	// 지출 카테고리 삭제하기
+	@Transactional
+	public boolean deleteExpenseCategory(String id, String categories, int index) {
+		Optional<Member> memberOptional = memberRepository.findById(id);
+		if(memberOptional.isPresent()) {
+			Member member = memberOptional.get();
+			List<String> expenseCategories = member.getExpenseCategory();
+			expenseCategories.remove(index);
+			member.setExpenseCategory(expenseCategories);
+			memberRepository.save(member);
 			return true;
 		} else {
 			return false;			

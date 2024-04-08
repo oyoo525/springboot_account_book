@@ -1,9 +1,7 @@
 package com.mysite.account.domain;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,6 +18,7 @@ import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,36 +32,36 @@ public class Account {
 	@Column(nullable = false)
 	private String id;
 	
+	@Column(columnDefinition = "DATE", nullable = false)
+	private LocalDate date;
+	 
 	@Column(nullable = false)
-	private int year;
-	
-	@Column(nullable = false)
-	private int month;
-	
-	@Column(nullable = false)
-	private int date;
-	
-	@Column(nullable = false)
-	private Type type;
+	private Type type;			// 수입, 지출
 	public enum Type {
 		income, expense
 	};
 	
-	@Column
-	private String category;
+	@Column(nullable = false)
+	private CashType type2;		// 현금, 통장, 카드
+	public enum CashType {
+		account, card, cash
+	}
 	
-	@Column
-	private String account;
+	@Column(nullable = true)
+	private String bankName;	// 자산 거래처
 	
-	@Column
-	private int amount;
+	@Column(nullable = false)
+	private String category;	// 계정과목
+	
+	@Column(nullable = true)
+	private String account;		// 거래처(입금 혹은 지출)
+	
+	@Column(nullable = false)
+	private int amount;			// 금액
 	
 	@Column(columnDefinition = "TEXT")
-	private String memo;
-	
-	@Column(columnDefinition = "TEXT")
-	private String file;
-	
+	private String memo;		// 메모
+
 	@Override
 	public String toString() {
 		return "id : " + id + ", type : " + type + ", category : " + category

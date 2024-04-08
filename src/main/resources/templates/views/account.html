@@ -12,29 +12,51 @@
 <body>
 	<div class="container_box">
 		<div th:include="temp/header :: .header_box"></div>
+		<button onclick="location.href='/excelUpload'">엑셀로 올리기</button>
 		<form id="account_form">
-			<input type="hidden" name="id" id="id" value="sehwa">
+			<div>
+				<input type="date" name="date" id="date">
+			</div>
 			<div>
 				<input type="radio" name="type" class="type" value="income" checked>수입
 				<input type="radio" name="type" class="type" value="expense">지출
 			</div>
 			<div>
-				<button type="button" onclick="location.href='/category'">카테고리 관리로 이동</button>
-				<select name="category" id="category">
-					<option hidden value="0" selected>-선택-</option>
-					<option>식비</option>
-					<option>교통</option>
-					<option>통신</option>
+				<div id="incomeType">
+					<input type="radio" name="incomeType" class="incomeType" value="cash">현금
+					<input type="radio" name="incomeType" class="incomeType" value="account">통장
+				</div>
+				<div id="expenseType" class="hidden">
+					<input type="radio" name="expenseType" class="expenseType" value="cash" checked>현금
+					<input type="radio" name="expenseType" class="expenseType" value="account">통장
+					<input type="radio" name="expenseType" class="expenseType" value="card">카드
+				</div>
+			</div>
+			<div id="bankBox" class="hidden">
+				<select name="bank" id="accountSelect" class="hidden">
+					<option>국민은행 27510</option>
+					<option>국민은행 27511</option>
 				</select>
+				<select name="bank" id="cardSelect" class="hidden">
+					<option>롯데카드 6420</option>
+					<option>국민카드 4420</option>
+				</select>
+				<button type="button" onclick="location.href='/bank'">계좌/카드 관리</button>
 			</div>
 			<div>
-				<input type="date" name="date" id="date">
+				<select name="category" id="incomeCategory">
+					<option th:each="category : ${incomeCategory}" th:value="${category}" th:text="${category}"></option>
+				</select>
+				<select name="category" id="expenseCategory" class="hidden">
+					<option th:each="category : ${expenseCategory}" th:value="${category}" th:text="${category}"></option>
+				</select>
+				<button type="button" onclick="location.href='/category'">카테고리 관리</button>
+			</div>
+			<div>
+				<input type="text" name="account" id="account" placeholder="어디에서 입금된/사용한 금액인가요?">
 			</div>
 			<div>
 				<input type="text" name="amount" id="amount" placeholder="금액을 입력하세요.">
-			</div>
-			<div>
-				<input type="text" name="account" id="account" placeholder="거래처를 입력하세요.">
 			</div>
 			<div>
 				<textarea name="memo" id="memo"></textarea>

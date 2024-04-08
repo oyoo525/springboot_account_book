@@ -75,34 +75,44 @@ $(function() {
 
 	// 가계부 추가하기
 	$("#account_form").on("submit", function(event) {
-		if($("#id").val().length <= 0) {
-			alert("로그인이 되지 않았습니다.");
-			return false;
-		}
-		if($("#category").val() === "0") {
-			alert("카테고리를 선택해주세요.");
-			return false;
-		}
 		if($("#amount").val() <= 0) {
 			alert("금액을 입력해주세요.");
-			return false;
-		}
-		if($("#account").val().length <= 0) {
-			alert("거래처를 입력해주세요.");
 			return false;
 		}
 
 		event.preventDefault();
 
+		let type = $(".type:checked").val();
+		let type2 = "";
+		let category = "";
+		let bank = "";
+		
+		if(type == "income") {
+			type2 = $(".incomeType:checked").val();
+			category = $("#incomeCategory").val();
+		} else if(type == "expense") {
+			type2 = $(".expenseType:checked").val();
+			category = $("#expenseCategory").val();
+		}
+
+		if(type2 == "cash") {
+			bank = "";
+		} else if(type2 == "account") {
+			bank = $("#accountSelect").val();
+		} else if(type2 == "card") {
+			bank = $("#cardSelect").val();
+		}
+		
+		console.log(type2, ":", bank);
+
 		let data = {
-			"id" : $("#id").val(),
-			"type" : $(".type:checked").val(),
-			"category" : $("#category").val(),
-			"year" : $("#date").val().split("-")[0],
-			"month" : $("#date").val().split("-")[1],
-			"date" : $("#date").val().split("-")[2],
-			"amount" : $("#amount").val().replace(",", ""),
+			"date" : $("#date").val(),
+			"type" : type,
+			"type2" : type2,
+			"bankName" : bank,
+			"category" : category,
 			"account" :  $("#account").val(),
+			"amount" : $("#amount").val().replace(",", ""),
 			"memo" : $("#memo").val()
 		}
 

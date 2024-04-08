@@ -13,9 +13,10 @@
 <body>
 	<div class="header_box">
 		<button type="button" onclick="location.href='/'">HOME</button>
-		<button type="button" >월별</button>
+		<button type="button" onclick="location.href='/report'" >리포트</button>
 		<button type="button" >내 계정</button>
-		<button type="button" id="logoutBtn">로그아웃</button>
+		<button th:if="${loginId == null}" type="button" onclick="location.href='/login'">로그인</button>
+		<button th:if="${loginId != null}" type="button" id="logoutBtn">로그아웃</button>
 	</div>
 </body>
 </html>

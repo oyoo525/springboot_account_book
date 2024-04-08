@@ -27,13 +27,11 @@ public class AccountService {
 	public int insertAccount(Account account) {
 		log.info("AccountService - insertAccount()");
 		Account ac = accountRepository.save(account);
-		System.out.println(ac);
 		return ac != null ? 1 : 0; 
 	}
 	
 	public int selectIncome(String id) {
 		Integer i = accountRepository.sumIncome(id);
-		System.out.println(year + "-" + month + "-" + day);
 		return i != null ? i : 0;
 	}
 	

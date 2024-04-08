@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form th:action="@{/fileUpload}" method="post" enctype="multipart/form-data">
+		<ul>
+			<li>excel 다운받기</li>
+			<li>첨부파일<input th:type="file" name="fileUpload"></li>
+		</ul>
+		<input th:type="submit" th:value="전송하기">
+	</form>
+
+
+
+</body>
+</html>

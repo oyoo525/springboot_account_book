@@ -119,6 +119,34 @@ public class MemberController {
 		return memberService.deleteIncomeCategory(id, category, index);
 	}
 	
+	@PostMapping("/addExpenseCategory")
+	@ResponseBody
+	public String addExpenseCategory(HttpSession session, @RequestParam("category") String category) {
+		System.out.println("category : " + category);
+		String id = (String)session.getAttribute("loginId");
+		memberService.addExpenseCategory(id, category);
+		return "추가완료";
+	}
+	
+	@PostMapping("/modifyExpenseCategory")
+	@ResponseBody
+	public String modifyExpenseCategory(HttpSession session, 
+			@RequestParam("category") String category, @RequestParam("index") int index) {
+		System.out.println("category : " + category);
+		String id = (String)session.getAttribute("loginId");
+		memberService.modifyExpenseCategory(id, category, index);
+		return "수정완료";
+	}
+	
+	@PostMapping("/deleteExpenseCategory")
+	@ResponseBody
+	public boolean deleteExpenseCategory(HttpSession session, 
+			@RequestParam("category") String category, @RequestParam("index") int index) {
+		System.out.println("category : " + category);
+		String id = (String)session.getAttribute("loginId");
+		return memberService.deleteExpenseCategory(id, category, index);
+	}
+	
 	
 	
 	

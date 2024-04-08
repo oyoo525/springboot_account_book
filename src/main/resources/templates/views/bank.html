@@ -6,34 +6,34 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="/css/global.css">
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="/js/category.js"></script>
+	<script src="/js/bank.js"></script>
 </head>
 <body>
 	<div class="container_box">
 		<div th:include="temp/header :: .header_box"></div>
 		<div>
-			<span>수입 카테고리</span>
-			<button id="incomeCategoryDeleteBtn">삭제</button>
-			<button id="incomeCategoryModifyBtn">수정</button>
-			<button id="incomeCategoryAddBtn">추가</button>
-			<div class="incomeInputBox hidden">
-				<input type="text" id="incomeCategoryInput">
-				<button type="button" id="incomeCategoryInputSubmitBtn"></button>
+			<span>통장</span>
+			<button id="accountDeleteBtn">삭제</button>
+			<button id="accountModifyBtn">수정</button>
+			<button id="accountAddBtn">추가</button>
+			<div class="accountInputBox hidden">
+				<input type="text" id="accountInput">
+				<button type="button" id="accountInputSubmitBtn"></button>
 			</div>
-			<div th:if="${incomeCategory != null}">
-				<ul th:each="category, iterStat : ${incomeCategory}">
+			<div th:if="${account != null}">
+				<ul th:each="account, iterStat : ${account}">
 					<li>
-						<input type="radio" th:value="${category}" name="incomeCategory" class="incomeCategory" th:data-index="${iterStat.index}">
+						<input type="radio" th:value="${account.name}" name="account" class="accountList" th:data-index="${iterStat.index}">
 						<span th:text="${category}"></span>
 					</li>
 				</ul>
 			</div>
-			<div th:if="${incomeCategory == null}">
+			<div th:if="${account == null}">
 				카테고리가 없습니다.
 			</div>
 		</div>
 		<div>
-			<span>지출 카테고리</span>
+			<span>카드</span>
 			<button id="expenseCategoryDeleteBtn">삭제</button>
 			<button id="expenseCategoryModifyBtn">수정</button>
 			<button id="expenseCategoryAddBtn">추가</button>

@@ -13,10 +13,10 @@ import com.mysite.account.domain.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-	@Query(value = "SELECT SUM(amount) FROM springboot_account_book WHERE id = :id AND type = 0", nativeQuery = true)
+	@Query(value = "SELECT SUM(amount) FROM springboot_account_book WHERE id = :id AND type = 0 ", nativeQuery = true)
 	public Integer sumIncome(@Param("id") String id);
 	
-	@Query(value = "SELECT SUM(amount) FROM springboot_account_book WHERE id = :id AND type = 1", nativeQuery = true)
+	@Query(value = "SELECT SUM(amount) FROM springboot_account_book WHERE id = :id AND type = 1 ", nativeQuery = true)
 	public Integer sumExpense(@Param("id") String id);
 	
 	
